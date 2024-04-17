@@ -6,7 +6,7 @@
 - Language: C++
 - Requires: emp-tools,  emp-ot, Eigen-3.4.0
 
-## Testing
+## Compiling
 
 To compile and test the conversion protocol, into the root dir and do the following: 
 
@@ -28,9 +28,9 @@ If you want to test the code in local machine, into the build dir and  type
 If you want to test the code over two machine, into the build dir and type
 
 ```
-./bin/[binaries] 1 12345  //on one machine and
+  $./bin/[binaries] 1 12345  //on one machine and
 
-./bin/[binaries] 2 12345  //on the other.
+  $./bin/[binaries] 2 12345  //on the other.
 ```
 
 You can modify the IP in the **MPABY/util_cmpc_config.h** to communicate with multiple machines
