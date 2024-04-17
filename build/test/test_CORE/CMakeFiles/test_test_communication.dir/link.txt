@@ -1,0 +1,1 @@
+/usr/bin/c++   -pthread -Wall -funroll-loops -Wno-ignored-attributes -Wno-unused-result -march=native -maes -mrdseed -std=c++11 -O3 -fopenmp -O3 -DNDEBUG -rdynamic CMakeFiles/test_test_communication.dir/test_communication.cpp.o -o ../../bin/test_test_communication  -Wl,-rpath,/usr/local/lib /usr/local/lib/libemp-tool.so -lssl -lcrypto 
