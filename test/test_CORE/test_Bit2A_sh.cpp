@@ -7,7 +7,7 @@ using namespace emp;
 
 #define test_B2A
 #define BENCH 1
-const static int nP = 32;
+const static int nP = 16;
 int party, port;
 
 // const char out3[] = "7e50ebb4bd718d7b";
