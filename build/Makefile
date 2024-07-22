@@ -57,10 +57,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zck/文档/Esorics-MPABY/MPABY-openSource
+CMAKE_SOURCE_DIR = /home/zck/文档/MPABY/MPABY
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zck/文档/Esorics-MPABY/MPABY-openSource/build
+CMAKE_BINARY_DIR = /home/zck/文档/MPABY/MPABY/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/CMakeFiles /home/zck/文档/Esorics-MPABY/MPABY-openSource/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zck/文档/MPABY/MPABY/build/CMakeFiles /home/zck/文档/MPABY/MPABY/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zck/文档/MPABY/MPABY/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -249,6 +249,19 @@ test_test_communication/fast:
 	$(MAKE) $(MAKESILENT) -f test/test_CORE/CMakeFiles/test_test_communication.dir/build.make test/test_CORE/CMakeFiles/test_test_communication.dir/build
 .PHONY : test_test_communication/fast
 
+#=============================================================================
+# Target rules for targets named test_test_MMTR_sh
+
+# Build rule for target.
+test_test_MMTR_sh: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_test_MMTR_sh
+.PHONY : test_test_MMTR_sh
+
+# fast build rule for target.
+test_test_MMTR_sh/fast:
+	$(MAKE) $(MAKESILENT) -f test/test_CORE/CMakeFiles/test_test_MMTR_sh.dir/build.make test/test_CORE/CMakeFiles/test_test_MMTR_sh.dir/build
+.PHONY : test_test_MMTR_sh/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -265,6 +278,7 @@ help:
 	@echo "... test_test_A2B_sh"
 	@echo "... test_test_Bit2A_sh"
 	@echo "... test_test_GMW_sh"
+	@echo "... test_test_MMTR_sh"
 	@echo "... test_test_MPGC_sh"
 	@echo "... test_test_communication"
 	@echo "... test_test_vec_sh"

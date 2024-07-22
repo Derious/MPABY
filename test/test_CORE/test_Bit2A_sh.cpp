@@ -6,7 +6,7 @@ using namespace std;
 using namespace emp;
 
 #define test_B2A
-#define BENCH 100
+#define BENCH 1
 const static int nP = 32;
 int party, port;
 
@@ -111,23 +111,25 @@ int main(int argc, char** argv) {
 
         mpc->GMW_A->rec_ShareA(rec_value,&res);
 
-        string res_string = "";
-        for (int i = 63; i >= 0; i--)
+        if (party == 1)
         {
-            res_string += (a_rec[i]?"1":"0");
-            cout<<a_rec[i];
+            string res_string = "";
+            for (int i = 63; i >= 0; i--)
+            {
+                res_string += (a_rec[i]?"1":"0");
+                cout<<a_rec[i];
+            }
+            cout<<endl;
+            char out3[100] = {0};
+            sprintf(out3,"%16lx",rec_value);
+            cout<<hex_to_binary(string(out3))<<endl;
+
+            cout <<"1:"<< (res_string == hex_to_binary(string(out3))? "GOOD!":"BAD!")<<endl<<flush;
+            // cout<<"B2A_online throughput: "<<BENCH/timeuse<<"opt/s"<<endl;
+            cout<<"B2A_online runtime: "<<(timeuse/BENCH)*1000.0<<"ms"<<endl;
         }
-        cout<<endl;
-        char out3[100] = {0};
-        sprintf(out3,"%16lx",rec_value);
-        cout<<hex_to_binary(string(out3))<<endl;
-
-        cout <<"1:"<< (res_string == hex_to_binary(string(out3))? "GOOD!":"BAD!")<<endl<<flush;
-        
-
         delete mpc;
-        // cout<<"B2A_online throughput: "<<BENCH/timeuse<<"opt/s"<<endl;
-        cout<<"B2A_online runtime: "<<(timeuse/BENCH)*1000.0<<"ms"<<endl;
+        
 
 #endif
 

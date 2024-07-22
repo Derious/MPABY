@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zck/文档/Esorics-MPABY/MPABY-openSource/test/test_GC/test_MPGC_sh.cpp" "test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.o" "gcc" "test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.o.d"
+  "/home/zck/文档/MPABY/MPABY/test/test_GC/test_MPGC_sh.cpp" "test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.o" "gcc" "test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

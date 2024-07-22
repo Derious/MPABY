@@ -1,4 +1,4 @@
-# Install script for directory: /home/zck/文档/Esorics-MPABY/MPABY-openSource/test/test_GMW
+# Install script for directory: /home/zck/文档/MPABY/MPABY/test/test_GMW
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

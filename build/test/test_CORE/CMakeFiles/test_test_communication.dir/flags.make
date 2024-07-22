@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DEMP_CIRCUIT_PATH=/usr/local/include/emp-tool/circuits/files/
 
-CXX_INCLUDES = -I/home/zck/文档/Esorics-MPABY/MPABY-openSource -I/usr/local/include/eigen3
+CXX_INCLUDES = -I/home/zck/文档/MPABY/MPABY -I/usr/local/include/eigen3
 
 CXX_FLAGS =   -pthread -Wall -funroll-loops -Wno-ignored-attributes -Wno-unused-result -march=native -maes -mrdseed -std=c++11 -O3 -fopenmp -O3 -DNDEBUG
 

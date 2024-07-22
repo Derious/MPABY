@@ -102,7 +102,7 @@ struct scalar_ctx
 };
 
 
-
+#define BIT(a,bit) (bool)(((uint64_t)a >> bit) & (uint64_t)0x1)
 
 template<int nP>
 class GMWprotocolA
@@ -113,10 +113,45 @@ public:
 	ThreadPool * pool;
 	int party;
     PRG prg;
+    IKNP<NetIO> *ot1[nP+1];
+	IKNP<NetIO> *ot2[nP+1];
     GMWprotocolA(NetIOMP<nP>* io, ThreadPool * pool, int party){
         this->io = io;
         this->pool = pool;
         this->party = party;
+        for(int i = 1; i <= nP; ++i) for(int j = 1; j <= nP; ++j) if(i < j) {
+			if(i == party) {
+					ot1[j] = new IKNP<NetIO>(io->get(j, false));
+					ot2[j] = new IKNP<NetIO>(io->get(j, true));
+			} else if (j == party) {
+					ot2[i] = new IKNP<NetIO>(io->get(i, false));
+					ot1[i] = new IKNP<NetIO>(io->get(i, true));
+			}
+		}
+
+        vector<future<void>> res;//relic multi-thread problems...
+		for(int i = 1; i <= nP; ++i) for(int j = 1; j <= nP; ++j) if(i < j) {
+			if(i == party) {
+				res.push_back(pool->enqueue([this, io, j]() {
+					ot1[j]->setup_send();
+					io->flush(j);
+				}));
+				res.push_back(pool->enqueue([this, io, j]() {
+					ot2[j]->setup_recv();
+					io->flush(j);
+				}));
+			} else if (j == party) {
+				res.push_back(pool->enqueue([this, io, i]() {
+					ot2[i]->setup_recv();
+					io->flush(i);
+				}));
+				res.push_back(pool->enqueue([this, io, i]() {
+					ot1[i]->setup_send();
+					io->flush(i);
+				}));
+			}
+		}
+		joinNclean(res);
     }
 
     void set_ShareA(ShareA* a, int64_t value, int p) {
@@ -562,7 +597,7 @@ public:
             delta_ab = 0;
     }
 
-    void setupMULT(int64_t &delta_ab, int64_t &a_delta, int64_t &b_delta) {
+    void setupMULT_NOT(int64_t &delta_ab, int64_t &a_delta, int64_t &b_delta) {
 
         
         int64_t *delta_i = new int64_t[nP+1];
@@ -609,6 +644,183 @@ public:
             delta_ab = 0;
     }
 
+    //Condider the IKNP OT in our implementations   
+    void setupMULT(int64_t &delta_ab, int64_t a_delta, int64_t b_delta)  {
+
+        int length = 64;
+        block *r[nP+1];
+        for (int i = 0; i <= nP; i++)
+        {
+            r[i] = new block[length];
+        }
+        block *b0 = new block[length], *b1 = new block[length];
+	    bool *b = new bool[length];
+
+        int64_t res_shared = 0;
+	    int64_t* bb0 = new int64_t[length];
+	    int64_t* bb1 = new int64_t[length];
+	    prg.random_data(bb0,length*sizeof(int64_t));
+        memset(bb0,0,length*sizeof(int64_t));
+
+        uint64_t bais = 1;
+        for (int i = 0; i < length; i++)
+        {
+            bb1[i] = bb0[i] + bais*a_delta;
+			bais *= 2;
+		    b0[i] = makeBlock(0,bb0[i]);
+		    b1[i] = makeBlock(0,bb1[i]);
+            b[i] = BIT(b_delta,i);
+        }
+        io->flush();
+
+        block *r_rand[nP+1];
+        block *b0_rand[nP+1];
+        block *b1_rand[nP+1];
+        block *u0_rand[nP+1];
+        block *u1_rand[nP+1];
+        block *uu0_rand[nP+1];
+        block *uu1_rand[nP+1];
+        bool *b_rand[nP+1];
+        bool *bb_rand[nP+1];
+        for (int i = 1; i <= nP; i++)
+        {
+            r_rand[i] = new block[length];
+            b0_rand[i] = new block[length];
+            b1_rand[i] = new block[length];
+            u0_rand[i] = new block[length];
+            u1_rand[i] = new block[length];
+            uu0_rand[i] = new block[length];
+            uu1_rand[i] = new block[length];
+            b_rand[i] = new bool[length];   
+            bb_rand[i] = new bool[length];   
+            memset(b_rand[i],0,length*sizeof(bool));
+            memset(bb_rand[i],0,length*sizeof(bool));
+        }
+        
+        vector<future<void>> res;//relic multi-thread problems...
+        for (int i = 1; i <= nP; i++)
+        {   
+            int party2 = i;
+            if (i!=party)
+            {
+                res.push_back(pool->enqueue([this, b, r_rand, b_rand, length, party2]() {
+                    ot2[party2]->recv_rot(r_rand[party2], b_rand[party2], length);
+                    io->flush(party2);
+                    for (int j = 0; j < length; j++)
+                    {
+                        b_rand[party2][j] = b_rand[party2][j] != b[j];
+                    }
+                    io->send_data(party2,b_rand[party2],length*sizeof(bool));
+                    io->flush(party2);
+                    
+                }));
+                res.push_back(pool->enqueue([this, bb_rand, b0_rand, b1_rand, length, party2]() {
+                    ot1[party2]->send_rot(b0_rand[party2], b1_rand[party2], length);
+                    io->flush(party2);
+                    io->recv_data(party2,bb_rand[party2],length*sizeof(bool));
+                    io->flush(party2);
+				}));
+            }
+        }
+        joinNclean(res);
+
+
+        for (int i = 1; i <= nP; i++)
+        {
+            int party2 = i;
+            if (i!=party)
+            {
+                for (int j = 0; j < length; j++)
+                {
+                    if(bb_rand[party2][j]) 
+                    {
+                        uu0_rand[party2][j] = b1_rand[party2][j] ^ b0[j];
+                        uu1_rand[party2][j] = b0_rand[party2][j] ^ b1[j];
+                    }
+                    else 
+                    {
+                        uu1_rand[party2][j] = b1_rand[party2][j] ^ b1[j];
+                        uu0_rand[party2][j] = b0_rand[party2][j] ^ b0[j];
+                    }
+                }
+                res.push_back(pool->enqueue([this, uu0_rand, uu1_rand, length, party2]() {
+                    io->send_data(party2,uu1_rand[party2],length*sizeof(block));
+                    io->flush(party2);
+                    io->send_data(party2,uu0_rand[party2],length*sizeof(block));
+                    io->flush(party2);
+                }));
+                res.push_back(pool->enqueue([this, u1_rand, u0_rand, length, party2]() {
+                    io->recv_data(party2,u1_rand[party2],length*sizeof(block));
+                    io->flush(party2);
+                    io->recv_data(party2,u0_rand[party2],length*sizeof(block));
+                    io->flush(party2);
+                }));
+            }
+        }
+        joinNclean(res);
+
+        for (int i = 1; i <= nP; i++)
+        {
+            int party2 = i;
+            if (i!=party)
+            {
+                // xorBlocks_arr(r[party2],u0_rand[party2],r_rand[party2],(length));
+                
+                for (int j = 0; j < length; j++)
+                {
+                    if(b[j]) r[party2][j] = u1_rand[party2][j] ^ r_rand[party2][j];
+                    else r[party2][j] = u0_rand[party2][j] ^ r_rand[party2][j];
+                }      
+            }
+            /* code */
+        }
+              
+
+        for (int i = 1; i <= nP; i++)
+        {
+            if(i != party)
+            {
+                
+                int64_t r_sum = 0;
+                int64_t bb0_sum = 0;
+                for (int j = 0; j < length; j++)
+                {
+                    bb0_sum = bb0_sum + bb0[j];
+                    int64_t *v64val = (int64_t*) &r[i][j];
+                    r_sum = r_sum + v64val[0];
+                }
+                bb0_sum = -bb0_sum;
+                // cout << "x1: " << bb0_sum<< " x2: " << r_sum  << endl; 
+                res_shared = res_shared + bb0_sum + r_sum;
+            }
+        }
+        delta_ab = res_shared + a_delta*b_delta;
+
+
+	    io->flush();
+	
+	
+	    delete[] b0;
+	    delete[] b1;
+	    delete[] bb0;
+	    delete[] bb1;
+	    delete[] b;
+
+        for (int i = 1; i <= nP; i++)
+        {
+            delete[] r[i];
+            delete[] r_rand[i];
+            delete[] b0_rand[i];
+            delete[] b1_rand[i];
+            delete[] u0_rand[i];
+            delete[] u1_rand[i];
+            delete[] uu0_rand[i];
+            delete[] uu1_rand[i];
+            delete[] b_rand[i];
+            delete[] bb_rand[i];
+        }
+    }
+
     void mulA_constant_setup(int64_t &delta_c, int64_t delta_a, int64_t b) {
         delta_c = b * delta_a;
     }
@@ -638,6 +850,11 @@ public:
     }
 
     ~GMWprotocolA(){
+
+        for(int i = 1; i <= nP; ++i) if( i!= party ) {
+			delete ot1[i];
+			delete ot2[i];
+		}
 
     }
 };

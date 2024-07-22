@@ -57,10 +57,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zck/文档/Esorics-MPABY/MPABY-openSource
+CMAKE_SOURCE_DIR = /home/zck/文档/MPABY/MPABY
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zck/文档/Esorics-MPABY/MPABY-openSource/build
+CMAKE_BINARY_DIR = /home/zck/文档/MPABY/MPABY/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/CMakeFiles /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_GC//CMakeFiles/progress.marks
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/CMakeFiles 0
+	cd /home/zck/文档/MPABY/MPABY/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zck/文档/MPABY/MPABY/build/CMakeFiles /home/zck/文档/MPABY/MPABY/build/test/test_GC//CMakeFiles/progress.marks
+	cd /home/zck/文档/MPABY/MPABY/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zck/文档/MPABY/MPABY/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/clean
+	cd /home/zck/文档/MPABY/MPABY/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/preinstall
+	cd /home/zck/文档/MPABY/MPABY/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/preinstall
+	cd /home/zck/文档/MPABY/MPABY/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/zck/文档/MPABY/MPABY/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/rule:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/rule
+	cd /home/zck/文档/MPABY/MPABY/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/rule
 .PHONY : test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/rule
 
 # Convenience name for target.
@@ -182,7 +182,7 @@ test_test_MPGC_sh: test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/rule
 
 # fast build rule for target.
 test_test_MPGC_sh/fast:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(MAKE) $(MAKESILENT) -f test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build.make test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build
+	cd /home/zck/文档/MPABY/MPABY/build && $(MAKE) $(MAKESILENT) -f test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build.make test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build
 .PHONY : test_test_MPGC_sh/fast
 
 test_MPGC_sh.o: test_MPGC_sh.cpp.o
@@ -190,7 +190,7 @@ test_MPGC_sh.o: test_MPGC_sh.cpp.o
 
 # target to build an object file
 test_MPGC_sh.cpp.o:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(MAKE) $(MAKESILENT) -f test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build.make test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.o
+	cd /home/zck/文档/MPABY/MPABY/build && $(MAKE) $(MAKESILENT) -f test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build.make test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.o
 .PHONY : test_MPGC_sh.cpp.o
 
 test_MPGC_sh.i: test_MPGC_sh.cpp.i
@@ -198,7 +198,7 @@ test_MPGC_sh.i: test_MPGC_sh.cpp.i
 
 # target to preprocess a source file
 test_MPGC_sh.cpp.i:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(MAKE) $(MAKESILENT) -f test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build.make test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.i
+	cd /home/zck/文档/MPABY/MPABY/build && $(MAKE) $(MAKESILENT) -f test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build.make test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.i
 .PHONY : test_MPGC_sh.cpp.i
 
 test_MPGC_sh.s: test_MPGC_sh.cpp.s
@@ -206,7 +206,7 @@ test_MPGC_sh.s: test_MPGC_sh.cpp.s
 
 # target to generate assembly for a file
 test_MPGC_sh.cpp.s:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(MAKE) $(MAKESILENT) -f test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build.make test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.s
+	cd /home/zck/文档/MPABY/MPABY/build && $(MAKE) $(MAKESILENT) -f test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/build.make test/test_GC/CMakeFiles/test_test_MPGC_sh.dir/test_MPGC_sh.cpp.s
 .PHONY : test_MPGC_sh.cpp.s
 
 # Help Target
@@ -237,6 +237,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/zck/文档/MPABY/MPABY/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

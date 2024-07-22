@@ -18,4 +18,5 @@ endmacro()
 # Test cases
 add_test_case_with_run(test_A2B_sh)
 add_test_case_with_run(test_Bit2A_sh)
-add_test_case_with_run(test_communication) 
+add_test_case_with_run(test_communication)  
+add_test_case_with_run(test_MMTR_sh) 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/zck/文档/Esorics-MPABY/MPABY-openSource
+# Install script for directory: /home/zck/文档/MPABY/MPABY
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,18 +43,18 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/cmake" TYPE FILE FILES "/home/zck/文档/Esorics-MPABY/MPABY-openSource/cmake/emp-agmpc-config.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/cmake" TYPE FILE FILES "/home/zck/文档/MPABY/MPABY/cmake/emp-agmpc-config.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/" TYPE DIRECTORY FILES "/home/zck/文档/Esorics-MPABY/MPABY-openSource/emp-agmpc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/" TYPE DIRECTORY FILES "/home/zck/文档/MPABY/MPABY/emp-agmpc")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_GC/cmake_install.cmake")
-  include("/home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_GMW/cmake_install.cmake")
-  include("/home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_CORE/cmake_install.cmake")
+  include("/home/zck/文档/MPABY/MPABY/build/test/test_GC/cmake_install.cmake")
+  include("/home/zck/文档/MPABY/MPABY/build/test/test_GMW/cmake_install.cmake")
+  include("/home/zck/文档/MPABY/MPABY/build/test/test_CORE/cmake_install.cmake")
 
 endif()
 
@@ -66,5 +66,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zck/文档/Esorics-MPABY/MPABY-openSource/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/zck/文档/MPABY/MPABY/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

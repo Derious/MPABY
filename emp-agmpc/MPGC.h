@@ -116,8 +116,8 @@ class MPGC { public:
 		if(party == 1)
 			memset(ANDS_value, true, num_ands*3);
 
-		fpre->abit->compute(ANDS_mac, ANDS_key, ANDS_value, num_ands*3);
-		// fpre->compute(ANDS_mac, ANDS_key, ANDS_value, num_ands);
+		// fpre->abit->compute(ANDS_mac, ANDS_key, ANDS_value, num_ands*3);
+		fpre->compute(ANDS_mac, ANDS_key, ANDS_value, num_ands);
 
 		prg.random_bool(preprocess_value, total_pre);
 		memcpy(preprocess_value,input_value,num_in);
@@ -622,12 +622,14 @@ class MPGC { public:
 			mask_input[i] = input[i];
 	
 		if(party!= 1) {
+
+			block tmp[num_in];
 			for(int i = 0; i < num_in; ++i) {
-				block tmp = labels[i];
-				if(mask_input[i]) tmp = tmp ^ Delta;
-				io->send_data(1, &tmp, sizeof(block));
-				io->flush(1);
+				tmp[i] = labels[i];
+				if(mask_input[i]) tmp[i] = tmp[i] ^ Delta;
 			}
+			io->send_data(1, tmp, num_in*sizeof(block));
+			io->flush(1);
 			
 		} else {
 			vector<future<void>> res;
@@ -698,7 +700,7 @@ class MPGC { public:
 	}
 
 
-	void function_dependen_A2B(bool * input, bool * output_delta) {
+	void function_dependen_A2B(bool * output_delta) {
 		int ands = num_in;
 		bool * x[nP+1];
 		bool * y[nP+1];
@@ -896,14 +898,38 @@ class MPGC { public:
 			y[i] = nullptr;
 		}
 
+		// if(party!= 1) {
+		// 	for(int i = 0; i < num_in; ++i) {
+		// 		block tmp = labels[i];
+		// 		if(input[i]) tmp = tmp ^ Delta;
+		// 		io->send_data(1, &tmp, sizeof(block));
+		// 		io->flush(1);
+		// 	}
+			
+		// } else {
+		// 	vector<future<void>> res;
+		// 	for(int i = 2; i <= nP; ++i) {
+		// 		int party2 = i;
+		// 		res.push_back(pool->enqueue([this, party2]() {
+		// 			io->recv_data(party2, eval_labels[party2], num_in*sizeof(block));
+		// 		}));
+		// 	}
+		// 	joinNclean(res);
+		// }
+	}
+
+	void online_A2B (bool * input, bool* output_Public) {
+		bool * mask_input = new bool[cf->num_wire];
+		for(int i = 0; i < num_in; ++i)
+			mask_input[i] = input[i];
+	
 		if(party!= 1) {
 			for(int i = 0; i < num_in; ++i) {
 				block tmp = labels[i];
-				if(input[i]) tmp = tmp ^ Delta;
+				if(mask_input[i]) tmp = tmp ^ Delta;
 				io->send_data(1, &tmp, sizeof(block));
 				io->flush(1);
 			}
-			
 		} else {
 			vector<future<void>> res;
 			for(int i = 2; i <= nP; ++i) {
@@ -913,30 +939,6 @@ class MPGC { public:
 				}));
 			}
 			joinNclean(res);
-		}
-	}
-
-	void online_A2B (bool * input, bool* output_Public) {
-		bool * mask_input = new bool[cf->num_wire];
-		for(int i = 0; i < num_in; ++i)
-			mask_input[i] = input[i];
-	
-		if(party!= 1) {
-			// for(int i = 0; i < num_in; ++i) {
-			// 	block tmp = labels[i];
-			// 	if(mask_input[i]) tmp = tmp ^ Delta;
-			// 	io->send_data(1, &tmp, sizeof(block));
-			// 	io->flush(1);
-			// }
-		} else {
-			// vector<future<void>> res;
-			// for(int i = 2; i <= nP; ++i) {
-			// 	int party2 = i;
-			// 	res.push_back(pool->enqueue([this, party2]() {
-			// 		io->recv_data(party2, eval_labels[party2], num_in*sizeof(block));
-			// 	}));
-			// }
-			// joinNclean(res);
 	
 			int ands = 0;	
 			for(int i = 0; i < cf->num_gate; ++i) {

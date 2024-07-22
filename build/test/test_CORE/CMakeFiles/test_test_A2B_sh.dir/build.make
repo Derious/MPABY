@@ -53,10 +53,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zck/文档/Esorics-MPABY/MPABY-openSource
+CMAKE_SOURCE_DIR = /home/zck/文档/MPABY/MPABY
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zck/文档/Esorics-MPABY/MPABY-openSource/build
+CMAKE_BINARY_DIR = /home/zck/文档/MPABY/MPABY/build
 
 # Include any dependencies generated for this target.
 include test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/depend.make
@@ -70,18 +70,18 @@ include test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/progress.make
 include test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/flags.make
 
 test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o: test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/flags.make
-test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o: /home/zck/文档/Esorics-MPABY/MPABY-openSource/test/test_CORE/test_A2B_sh.cpp
+test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o: /home/zck/文档/MPABY/MPABY/test/test_CORE/test_A2B_sh.cpp
 test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o: test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zck/文档/Esorics-MPABY/MPABY-openSource/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o"
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_CORE && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o -MF CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o.d -o CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o -c /home/zck/文档/Esorics-MPABY/MPABY-openSource/test/test_CORE/test_A2B_sh.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zck/文档/MPABY/MPABY/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o"
+	cd /home/zck/文档/MPABY/MPABY/build/test/test_CORE && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o -MF CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o.d -o CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.o -c /home/zck/文档/MPABY/MPABY/test/test_CORE/test_A2B_sh.cpp
 
 test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.i"
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_CORE && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zck/文档/Esorics-MPABY/MPABY-openSource/test/test_CORE/test_A2B_sh.cpp > CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.i
+	cd /home/zck/文档/MPABY/MPABY/build/test/test_CORE && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zck/文档/MPABY/MPABY/test/test_CORE/test_A2B_sh.cpp > CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.i
 
 test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.s"
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_CORE && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zck/文档/Esorics-MPABY/MPABY-openSource/test/test_CORE/test_A2B_sh.cpp -o CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.s
+	cd /home/zck/文档/MPABY/MPABY/build/test/test_CORE && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zck/文档/MPABY/MPABY/test/test_CORE/test_A2B_sh.cpp -o CMakeFiles/test_test_A2B_sh.dir/test_A2B_sh.cpp.s
 
 # Object files for target test_test_A2B_sh
 test_test_A2B_sh_OBJECTS = \
@@ -96,18 +96,18 @@ bin/test_test_A2B_sh: /usr/local/lib/libemp-tool.so
 bin/test_test_A2B_sh: /usr/lib/x86_64-linux-gnu/libssl.so
 bin/test_test_A2B_sh: /usr/lib/x86_64-linux-gnu/libcrypto.so
 bin/test_test_A2B_sh: test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zck/文档/Esorics-MPABY/MPABY-openSource/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../../bin/test_test_A2B_sh"
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_CORE && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_test_A2B_sh.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zck/文档/MPABY/MPABY/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../../bin/test_test_A2B_sh"
+	cd /home/zck/文档/MPABY/MPABY/build/test/test_CORE && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_test_A2B_sh.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/build: bin/test_test_A2B_sh
 .PHONY : test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/build
 
 test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/clean:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_CORE && $(CMAKE_COMMAND) -P CMakeFiles/test_test_A2B_sh.dir/cmake_clean.cmake
+	cd /home/zck/文档/MPABY/MPABY/build/test/test_CORE && $(CMAKE_COMMAND) -P CMakeFiles/test_test_A2B_sh.dir/cmake_clean.cmake
 .PHONY : test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/clean
 
 test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/depend:
-	cd /home/zck/文档/Esorics-MPABY/MPABY-openSource/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zck/文档/Esorics-MPABY/MPABY-openSource /home/zck/文档/Esorics-MPABY/MPABY-openSource/test/test_CORE /home/zck/文档/Esorics-MPABY/MPABY-openSource/build /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_CORE /home/zck/文档/Esorics-MPABY/MPABY-openSource/build/test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/zck/文档/MPABY/MPABY/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zck/文档/MPABY/MPABY /home/zck/文档/MPABY/MPABY/test/test_CORE /home/zck/文档/MPABY/MPABY/build /home/zck/文档/MPABY/MPABY/build/test/test_CORE /home/zck/文档/MPABY/MPABY/build/test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : test/test_CORE/CMakeFiles/test_test_A2B_sh.dir/depend
 
